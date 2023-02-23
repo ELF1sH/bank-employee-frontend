@@ -3,7 +3,9 @@ import { Route, Routes } from 'react-router-dom';
 
 import Sidebar from './components/ui/organisms/sidebar/SidebarController';
 import AuthPage from './pages/auth/AuthPage';
-import ClassesPage from './pages/classes/ClassesPage';
+import ClientsPage from './pages/clientsPage/ClientsPage';
+import EmployeesPage from './pages/employeesPage/EmployeesPage';
+import TariffsPage from './pages/tariffsPage/TariffsPage';
 
 import 'antd/dist/reset.css';
 
@@ -17,7 +19,9 @@ const App: React.FC = () => (
           <Sidebar />
           <div style={{ padding: '20px 30px', flexGrow: 1 }}>
             <Routes>
-              <Route path="/classes" element={<ClassesPage />} />
+              <Route path="/clients" element={<ClientsPage />} />
+              <Route path="/employees" element={<EmployeesPage />} />
+              <Route path="/tariffs" element={<TariffsPage />} />
             </Routes>
           </div>
         </div>

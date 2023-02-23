@@ -1,11 +1,9 @@
 import React from 'react';
 
 import SidebarItem from './components/sidebarItem/SidebarItemController';
-import { classesStructure } from '../../classesStructure';
-import ClassesIcon from '../../../../atoms/icons/ClassesIcon';
-import BugIcon from '../../../../atoms/icons/BugIcon';
 import InfoIcon from '../../../../atoms/icons/InfoIcon';
 import { Wrapper } from './styled';
+import UserIcon from '../../../../atoms/icons/UserIcon';
 
 interface LinksContainerProps {
   isSidebarCollapsed: boolean;
@@ -14,24 +12,25 @@ interface LinksContainerProps {
 export const LinksContainer: React.FC<LinksContainerProps> = ({ isSidebarCollapsed }) => (
   <Wrapper>
     <SidebarItem
-      text="Classes"
+      text="Clients"
+      to="/clients"
       isSidebarCollapsed={isSidebarCollapsed}
       isActive
-      isCollapsible
-      collapseTree={classesStructure}
     >
-      <ClassesIcon />
+      <UserIcon />
     </SidebarItem>
 
     <SidebarItem
-      text="Report a bug"
+      text="Employees"
+      to="/employees"
       isSidebarCollapsed={isSidebarCollapsed}
     >
-      <BugIcon />
+      <UserIcon />
     </SidebarItem>
 
     <SidebarItem
-      text="About"
+      text="Credit tariffs"
+      to="/tariffs"
       isSidebarCollapsed={isSidebarCollapsed}
     >
       <InfoIcon />

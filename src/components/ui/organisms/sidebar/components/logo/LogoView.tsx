@@ -13,13 +13,13 @@ interface LogoViewProps {
 const LogoView: React.FC<LogoViewProps> = ({
   isSidebarCollapsed,
 }) => (
-  <Link to="/classes">
+  <Link to="/clients">
     <LogoWrapper>
       <LogoBankStyled $isSidebarCollapsed={isSidebarCollapsed} />
 
-      <Fade isVisible={!isSidebarCollapsed}>
-        <LogoTextStyled />
-      </Fade>
+      {/* <Fade isVisible={!isSidebarCollapsed}> */}
+      {/*  <LogoTextStyled /> */}
+      {/* </Fade> */}
     </LogoWrapper>
   </Link>
 );
