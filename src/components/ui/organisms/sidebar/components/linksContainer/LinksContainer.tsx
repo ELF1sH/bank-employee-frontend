@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 import SidebarItem from './components/sidebarItem/SidebarItemController';
 import InfoIcon from '../../../../atoms/icons/InfoIcon';
@@ -9,31 +10,40 @@ interface LinksContainerProps {
   isSidebarCollapsed: boolean;
 }
 
-export const LinksContainer: React.FC<LinksContainerProps> = ({ isSidebarCollapsed }) => (
-  <Wrapper>
-    <SidebarItem
-      text="Clients"
-      to="/clients"
-      isSidebarCollapsed={isSidebarCollapsed}
-      isActive
-    >
-      <UserIcon />
-    </SidebarItem>
+export const LinksContainer: React.FC<LinksContainerProps> = ({ isSidebarCollapsed }) => {
+  const { pathname } = useLocation();
+  const curSubDirectory = `/${pathname.split('/')[1]}`;
 
-    <SidebarItem
-      text="Employees"
-      to="/employees"
-      isSidebarCollapsed={isSidebarCollapsed}
-    >
-      <UserIcon />
-    </SidebarItem>
+  const subDirectories = ['/clients', '/employees', '/tariffs'];
 
-    <SidebarItem
-      text="Credit tariffs"
-      to="/tariffs"
-      isSidebarCollapsed={isSidebarCollapsed}
-    >
-      <InfoIcon />
-    </SidebarItem>
-  </Wrapper>
-);
+  return (
+    <Wrapper>
+      <SidebarItem
+        text="Clients"
+        to={subDirectories[0]}
+        isSidebarCollapsed={isSidebarCollapsed}
+        isActive={subDirectories[0] === curSubDirectory}
+      >
+        <UserIcon />
+      </SidebarItem>
+
+      <SidebarItem
+        text="Employees"
+        to={subDirectories[1]}
+        isSidebarCollapsed={isSidebarCollapsed}
+        isActive={subDirectories[1] === curSubDirectory}
+      >
+        <UserIcon />
+      </SidebarItem>
+
+      <SidebarItem
+        text="Credit tariffs"
+        to={subDirectories[2]}
+        isSidebarCollapsed={isSidebarCollapsed}
+        isActive={subDirectories[2] === curSubDirectory}
+      >
+        <InfoIcon />
+      </SidebarItem>
+    </Wrapper>
+  );
+};
