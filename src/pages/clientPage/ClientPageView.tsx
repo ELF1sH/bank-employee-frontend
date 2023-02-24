@@ -16,6 +16,7 @@ export interface ClientPageViewProps {
   bankAccounts: IBankAccount[];
   onClickBankAccountRow: (id: string) => void;
   blockUser: (id: string) => void;
+  bankToClientsList: () => void;
 }
 
 const ClientPageView: React.FC<ClientPageViewProps> = ({
@@ -23,9 +24,12 @@ const ClientPageView: React.FC<ClientPageViewProps> = ({
   bankAccounts,
   onClickBankAccountRow,
   blockUser,
+  bankToClientsList,
 }) => (
   <>
     <PageHeader header={`Client '${client.lastName} ${client.firstName} ${client.middleName}'`}>
+      <Button onClick={bankToClientsList}>Back to the clients list</Button>
+
       {
         client.isBlocked
           ? <Tag color="red">Blocked</Tag>

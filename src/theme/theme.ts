@@ -95,5 +95,10 @@ export const GlobalStyles = createGlobalStyle<ThemeProps<DefaultTheme>>`
         margin-bottom: 20px;
       }
     }
+    .ant-tag {
+      && {
+        height: fit-content;
+      }
+    }
   `};
 `;

@@ -8,5 +8,5 @@ export enum OperationType {
   Withdrawal = 0,
   Incoming = 1,
   CreditRepayment = 2,
-  CreditIncomint = 3,
+  CreditIncoming = 3,
 }

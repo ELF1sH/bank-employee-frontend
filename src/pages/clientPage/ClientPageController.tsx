@@ -30,6 +30,10 @@ const ClientPageController: React.FC<ClientPageControllerProps> = ({
     navigate(`/bank-accounts/${id}`);
   };
 
+  const bankToClientsList = () => {
+    navigate('/clients');
+  };
+
   return (
     <ClientPageViewWithLoader
       isLoading={viewModel.isLoading}
@@ -37,6 +41,7 @@ const ClientPageController: React.FC<ClientPageControllerProps> = ({
       bankAccounts={viewModel.bankAccounts}
       onClickBankAccountRow={onClickBankAccountRow}
       blockUser={() => viewModel.blockUser(id!)}
+      bankToClientsList={bankToClientsList}
     />
   );
 };
