@@ -28,6 +28,7 @@ const ClientsTableView: React.FC<ClientsTableViewProps> = ({
     onRow={(record: IClient) => ({
       onClick: () => onClickRow(record.id),
     })}
+    rowKey={(record) => record.id}
   >
     <ColumnGroup title="Name">
       <Column title="First Name" dataIndex="firstName" key="firstName" />
@@ -38,8 +39,8 @@ const ClientsTableView: React.FC<ClientsTableViewProps> = ({
     <Column title="Credits" dataIndex="numberOfCredits" key="numberOfCredits" />
     <Column
       title="Tags"
-      dataIndex="isBlocked"
-      key="isBlocked"
+      dataIndex="tags"
+      key="tags"
       render={(_, record: IClient) => (
         record.isBlocked && <Tag color="red">Blocked</Tag>
       )}

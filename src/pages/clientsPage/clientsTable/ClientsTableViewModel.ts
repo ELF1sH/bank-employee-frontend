@@ -46,8 +46,7 @@ export class ClientsTableViewModel {
     );
 
     runInAction(() => {
-      this._clients = clientsResponse?.clients
-        ?.map((client) => ({ key: client.id, ...client })) ?? [];
+      this._clients = clientsResponse?.clients ?? [];
 
       this._pagination = {
         current: clientsResponse?.currentPage,

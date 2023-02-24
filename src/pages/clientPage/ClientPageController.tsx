@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
 import ClientPageView, { ClientPageViewProps } from './ClientPageView';
@@ -17,16 +17,25 @@ const ClientPageController: React.FC<ClientPageControllerProps> = ({
 }) => {
   const { id } = useParams();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     (async () => {
       await viewModel.getClient(id ?? '');
+      await viewModel.getBankAccounts(id ?? '');
     })();
   }, [viewModel, id]);
 
+  const onClickBankAccountRow = (id: string) => {
+    navigate(`/bank-accounts/${id}`);
+  };
+
   return (
     <ClientPageViewWithLoader
-      isLoading={!viewModel.client}
+      isLoading={viewModel.isLoading}
       client={viewModel.client!}
+      bankAccounts={viewModel.bankAccounts}
+      onClickBankAccountRow={onClickBankAccountRow}
     />
   );
 };

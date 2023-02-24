@@ -5,13 +5,17 @@ import { clientsRepository } from '../../domain/repositories/api/ClientsReposito
 import { useNotifications } from '../../modules/notification/useNotifications';
 import { ClientPageViewModel } from './ClientPageViewModel';
 import { GetClientUseCase } from '../../domain/useCases/clients/GetClientUseCase';
+import { GetBankAccountsUseCase } from '../../domain/useCases/bankAccounts/GetBankAccountsUseCase';
+import { bankAccountRepository } from '../../domain/repositories/api/BankAccountRepository';
 
 const ClientPageProvider: React.FC = () => {
   const { onError } = useNotifications();
 
   const getClientUseCase = new GetClientUseCase(clientsRepository, onError);
 
-  const viewModel = new ClientPageViewModel(getClientUseCase);
+  const getBankAccountsUseCase = new GetBankAccountsUseCase(bankAccountRepository, onError);
+
+  const viewModel = new ClientPageViewModel(getClientUseCase, getBankAccountsUseCase);
 
   return (
     <ClientPageController viewModel={viewModel} />
