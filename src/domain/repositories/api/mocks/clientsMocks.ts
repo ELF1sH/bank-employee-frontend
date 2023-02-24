@@ -1,8 +1,21 @@
 import { mock } from './common';
 import { getClientsResponse } from './data/getClientsResponse';
+import { getClientResponse } from './data/getClientResponse';
 
-export const mockLogin = () => {
+export const mockGettingClient = () => {
   mock
-    .onGet(/\/classes*/)
-    .reply((config) => [200, getClientsResponse]);
+    .onGet(/\/client\?id=*/)
+    .reply(() => [200, getClientResponse]);
+};
+
+export const mockGettingClientsList = () => {
+  mock
+    .onGet(/\/clients\?currentPage*/)
+    .reply(() => [200, getClientsResponse]);
+};
+
+export const mockCreatingClient = () => {
+  mock
+    .onPost('/create-client')
+    .reply(() => [200, getClientResponse]);
 };

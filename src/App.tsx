@@ -3,7 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 
 import Sidebar from './components/ui/organisms/sidebar/SidebarController';
 import AuthPage from './pages/auth/AuthPage';
-import ClientsPage from './pages/clientsPage/ClientsPage';
+import ClientsPage from './pages/clientsPage/ClientsPageController';
+import ClientPage from './pages/clientPage/ClientPageProvider';
 import EmployeesPage from './pages/employeesPage/EmployeesPage';
 import TariffsPage from './pages/tariffsPage/TariffsPage';
 
@@ -20,6 +21,7 @@ const App: React.FC = () => (
           <div style={{ padding: '20px 30px', flexGrow: 1 }}>
             <Routes>
               <Route path="/clients" element={<ClientsPage />} />
+              <Route path="/clients/:id" element={<ClientPage />} />
               <Route path="/employees" element={<EmployeesPage />} />
               <Route path="/tariffs" element={<TariffsPage />} />
             </Routes>

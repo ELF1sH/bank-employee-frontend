@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import ClientsPageController from './ClientsTableController';
 import { ClientsTableViewModel } from './ClientsTableViewModel';
@@ -18,4 +18,4 @@ const ClientsTableProvider: React.FC = () => {
   );
 };
 
-export default ClientsTableProvider;
+export default memo(ClientsTableProvider);

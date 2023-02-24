@@ -90,5 +90,10 @@ export const GlobalStyles = createGlobalStyle<ThemeProps<DefaultTheme>>`
     .ant-table-row {
       cursor: pointer;
     }
+    .ant-modal-header {
+      && {
+        margin-bottom: 20px;
+      }
+    }
   `};
 `;

@@ -50,6 +50,8 @@ const getSuccessMessageText = (messageType: SuccessNotificationType) => {
   switch (messageType) {
     case SuccessNotificationType.CHANGES_SUCCESSFULLY_SAVED:
       return 'Changes successfully saved';
+    case SuccessNotificationType.SUCCESSFULLY_CREATED:
+      return 'Successfully created';
     default:
       return 'Successfully done';
   }
