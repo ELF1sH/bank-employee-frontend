@@ -52,6 +52,8 @@ const getSuccessMessageText = (messageType: SuccessNotificationType) => {
       return 'Changes successfully saved';
     case SuccessNotificationType.SUCCESSFULLY_CREATED:
       return 'Successfully created';
+    case SuccessNotificationType.SUCCESSFULLY_BLOCKED:
+      return 'Successfully blocked';
     default:
       return 'Successfully done';
   }
