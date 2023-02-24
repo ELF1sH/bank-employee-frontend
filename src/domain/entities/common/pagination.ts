@@ -1,5 +1,8 @@
-export interface IPagination {
+export interface IPaginationRequest {
   currentPage: number;
-  totalItems: number;
   itemsPerPage: number;
+}
+
+export interface IPaginationResponse extends IPaginationRequest {
+  totalItems: number;
 }

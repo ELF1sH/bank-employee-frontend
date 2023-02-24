@@ -78,7 +78,7 @@ export const GlobalStyles = createGlobalStyle<ThemeProps<DefaultTheme>>`
       background: ${theme.colorBgContainer};
       color: ${theme.colorText};
 
-    },
+    };
     .ant-typography {
       .ant-typography-edit {
         color: ${theme.colorPrimary} !important;
@@ -86,6 +86,9 @@ export const GlobalStyles = createGlobalStyle<ThemeProps<DefaultTheme>>`
           color: ${theme.colorPrimaryActive} !important;
         }
       }
+    };
+    .ant-table-row {
+      cursor: pointer;
     }
   `};
 `;
