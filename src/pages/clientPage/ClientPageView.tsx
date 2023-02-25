@@ -32,11 +32,14 @@ const ClientPageView: React.FC<ClientPageViewProps> = ({
       <Button icon={<BackIcon />} onClick={bankToClientsList}>Back to the clients list</Button>
 
       {
-        client.isBlocked
-          ? <Tag color="red">Blocked</Tag>
-          : <Button danger type="primary" onClick={() => blockUser(client.id)}>Block client</Button>
+        !client.isBlocked && <Button danger type="primary" onClick={() => blockUser(client.id)}>Block client</Button>
       }
     </PageHeader>
+
+    {
+      client.isBlocked && <Tag style={{ marginBottom: '20px' }} color="red">BLOCKED</Tag>
+    }
+
     <Paragraph>
       <Text strong>First name:</Text>
       &nbsp;

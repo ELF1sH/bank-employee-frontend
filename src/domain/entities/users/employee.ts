@@ -9,3 +9,10 @@ export enum JobPosition {
   Manager = 1,
   Director = 2,
 }
+
+export interface ICreateEmployeePayload {
+  firstName: string;
+  lastName: string;
+  middleName: string;
+  jobPosition: number;
+}

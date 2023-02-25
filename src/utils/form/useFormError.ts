@@ -4,7 +4,7 @@ export interface FormErrors {
 
 export const useFormError = () => {
   const getValidateMessages = (): FormErrors => ({
-    required: 'Text field is required',
+    required: 'Field is required',
   });
 
   return { getValidateMessages };

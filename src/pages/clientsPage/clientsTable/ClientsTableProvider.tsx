@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-import ClientsPageController from './ClientsTableController';
+import ClientsTableController from './ClientsTableController';
 import { ClientsTableViewModel } from './ClientsTableViewModel';
 import { GetClientsUseCase } from '../../../domain/useCases/clients/GetClientsUseCase';
 import { clientsRepository } from '../../../domain/repositories/api/ClientsRepository';
@@ -14,7 +14,7 @@ const ClientsTableProvider: React.FC = () => {
   const viewModel = new ClientsTableViewModel(getClientsUseCase);
 
   return (
-    <ClientsPageController viewModel={viewModel} />
+    <ClientsTableController viewModel={viewModel} />
   );
 };
 
