@@ -1,7 +1,6 @@
 import React from 'react';
-import { Space, Tag, Typography } from 'antd';
+import { Tag, Typography } from 'antd';
 import Paragraph from 'antd/es/typography/Paragraph';
-import Title from 'antd/es/typography/Title';
 
 import PageHeader from '../../components/ui/molecules/pageHeader/PageHeader';
 import Button from '../../components/ui/atoms/button/Button';
