@@ -10,6 +10,7 @@ import { IOperation } from '../../domain/entities/bankAccounts/operation';
 import { getOperationType } from '../../utils/enumMappers';
 import { getColorByOperationType } from './helper';
 import Button from '../../components/ui/atoms/button/Button';
+import BackIcon from '../../components/ui/atoms/icons/BackIcon';
 
 const { Text } = Typography;
 
@@ -26,7 +27,7 @@ const BankAccountPageView: React.FC<BankAccountPageViewProps> = ({
 }) => (
   <>
     <PageHeader header={`Bank account №${bankAccount.accountNumber}`}>
-      <Button onClick={backToTheClientPage}>Back to the client page</Button>
+      <Button icon={<BackIcon />} onClick={backToTheClientPage}>Back to the client page</Button>
     </PageHeader>
 
     <Paragraph>

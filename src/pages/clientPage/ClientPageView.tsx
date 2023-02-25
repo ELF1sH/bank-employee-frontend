@@ -8,6 +8,7 @@ import { IClient } from '../../domain/entities/users/client';
 import PageHeader from '../../components/ui/molecules/pageHeader/PageHeader';
 import Button from '../../components/ui/atoms/button/Button';
 import { IBankAccount } from '../../domain/entities/bankAccounts/bankAccount';
+import BackIcon from '../../components/ui/atoms/icons/BackIcon';
 
 const { Text } = Typography;
 
@@ -28,7 +29,7 @@ const ClientPageView: React.FC<ClientPageViewProps> = ({
 }) => (
   <>
     <PageHeader header={`Client '${client.lastName} ${client.firstName} ${client.middleName}'`}>
-      <Button onClick={bankToClientsList}>Back to the clients list</Button>
+      <Button icon={<BackIcon />} onClick={bankToClientsList}>Back to the clients list</Button>
 
       {
         client.isBlocked
