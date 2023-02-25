@@ -39,7 +39,6 @@ export class TariffsGridViewModel {
   }
 
   @action public updateTariffs(tariffs: ICreditTariff[]): void {
-    console.log('hello');
     runInAction(() => {
       this._tariffs = tariffs;
     });

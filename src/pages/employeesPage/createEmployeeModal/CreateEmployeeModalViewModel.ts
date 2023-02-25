@@ -33,8 +33,6 @@ export class CreateEmployeeModalViewModel {
 
     const employeePayload = { ...employeePayloadArray } as unknown as ICreateEmployeePayload;
 
-    console.log(employeePayload);
-
     return this._createEmployeeUseCase.createEmployee(employeePayload);
   }
 }

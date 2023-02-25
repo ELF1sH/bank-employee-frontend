@@ -46,7 +46,6 @@ const CreateEmployeeModalController: React.FC<CreateEmployeeModalControllerProps
   };
 
   const onChange = (fieldsData: FieldData[]) => {
-    console.log(fieldsData);
     viewModel.setFieldsData(fieldsData);
   };
 
