@@ -84,7 +84,10 @@ const ClientPageView: React.FC<ClientPageViewProps> = ({
         dataIndex="tags"
         key="tags"
         render={(_, record: IBankAccount) => (
-          record.isClosed && <Tag color="red">Closed</Tag>
+          <>
+            {record.isClosed && <Tag color="red">Closed</Tag>}
+            {record.isCredit && <Tag color="green">Credit Bank Account</Tag>}
+          </>
         )}
       />
     </Table>

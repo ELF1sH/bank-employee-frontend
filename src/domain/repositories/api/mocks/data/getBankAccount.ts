@@ -5,4 +5,5 @@ export const getBankAccount: IBankAccount = {
   accountNumber: 235236464,
   balance: 345.35,
   isClosed: false,
+  isCredit: false,
 };
