@@ -17,7 +17,11 @@ const CreateEmployeeModalProvider: React.FC<CreateEmployeeModalProviderProps> = 
 }) => {
   const { onError, onSuccess } = useNotifications();
 
-  const createEmployeeUseCase = new CreateEmployeeUseCase(employeesRepository, onError, onSuccess);
+  const createEmployeeUseCase = new CreateEmployeeUseCase(
+    employeesRepository.createEmployee,
+    onError,
+    onSuccess,
+  );
 
   const viewModel = new CreateEmployeeModalViewModel(createEmployeeUseCase);
 

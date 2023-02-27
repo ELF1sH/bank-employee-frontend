@@ -13,11 +13,14 @@ import { usersRepository } from '../../domain/repositories/api/UsersRepository';
 const ClientPageProvider: React.FC = () => {
   const { onError, onSuccess } = useNotifications();
 
-  const getClientUseCase = new GetClientUseCase(clientsRepository, onError);
+  const getClientUseCase = new GetClientUseCase(clientsRepository.getClient, onError);
 
-  const getBankAccountsUseCase = new GetBankAccountsUseCase(bankAccountRepository, onError);
+  const getBankAccountsUseCase = new GetBankAccountsUseCase(
+    bankAccountRepository.getBankAccounts,
+    onError,
+  );
 
-  const blockUserUseCase = new BlockUserUseCase(usersRepository, onError, onSuccess);
+  const blockUserUseCase = new BlockUserUseCase(usersRepository.blockUser, onError, onSuccess);
 
   const viewModel = new ClientPageViewModel(
     getClientUseCase,

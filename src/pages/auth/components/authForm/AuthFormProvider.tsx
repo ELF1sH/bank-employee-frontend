@@ -14,7 +14,7 @@ const AuthFormProvider: React.FC = () => {
   const { onError } = useNotifications();
 
   const loginUseCase = new LoginUseCase(
-    authRepository,
+    authRepository.login,
     tokenRepository,
     onError,
     navigate,

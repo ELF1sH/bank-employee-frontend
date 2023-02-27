@@ -33,6 +33,6 @@ export class CreateClientModalViewModel {
 
     const clientPayload = { ...clientPayloadArray } as unknown as ICreateClientPayload;
 
-    return this._createClientUseCase.createClient(clientPayload);
+    return this._createClientUseCase.fetch(clientPayload);
   }
 }

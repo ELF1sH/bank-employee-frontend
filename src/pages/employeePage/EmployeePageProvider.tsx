@@ -11,9 +11,9 @@ import { employeesRepository } from '../../domain/repositories/api/EmployeesRepo
 const EmployeePageProvider: React.FC = () => {
   const { onError, onSuccess } = useNotifications();
 
-  const getEmployeeUseCase = new GetEmployeeUseCase(employeesRepository, onError);
+  const getEmployeeUseCase = new GetEmployeeUseCase(employeesRepository.getEmployee, onError);
 
-  const blockUserUseCase = new BlockUserUseCase(usersRepository, onError, onSuccess);
+  const blockUserUseCase = new BlockUserUseCase(usersRepository.blockUser, onError, onSuccess);
 
   const viewModel = new EmployeePageViewModel(
     getEmployeeUseCase,

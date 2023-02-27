@@ -10,10 +10,13 @@ import { GetOperationsHistoryUseCase } from '../../domain/useCases/bankAccounts/
 const BankAccountPageProvider: React.FC = () => {
   const { onError } = useNotifications();
 
-  const getBankAccountUseCase = new GetBankAccountUseCase(bankAccountRepository, onError);
+  const getBankAccountUseCase = new GetBankAccountUseCase(
+    bankAccountRepository.getBankAccount,
+    onError,
+  );
 
   const getOperationsHistoryUseCase = new GetOperationsHistoryUseCase(
-    bankAccountRepository,
+    bankAccountRepository.getOperationsHistory,
     onError,
   );
 

@@ -33,7 +33,7 @@ export class EmployeePageViewModel {
   @action public getEmployee(id: string) {
     this._setIsLoading(true);
 
-    this._getEmployeeUseCase.getEmployee(id)
+    this._getEmployeeUseCase.fetch({ id })
       .then((employee) => {
         if (employee) {
           runInAction(() => {
@@ -47,7 +47,7 @@ export class EmployeePageViewModel {
   }
 
   @action public blockUser(id: string) {
-    this._blockUserUseCase.blockUser(id)
+    this._blockUserUseCase.fetch({ id })
       .then((data) => {
         if (data) {
           runInAction(() => {

@@ -3,7 +3,7 @@ import { ICreateEmployeePayload, IEmployee } from '../../../entities/users/emplo
 
 export interface IEmployeesRepository {
   getEmployees: (pagination: IPaginationRequest) => Promise<IGetEmployeesResponse>;
-  getEmployee: (id: string) => Promise<IEmployee>;
+  getEmployee: (payload: { id: string }) => Promise<IEmployee>;
   createEmployee: (payload: ICreateEmployeePayload) => Promise<IEmployee>;
 }
 

@@ -10,7 +10,7 @@ const CreateTariffModalProvider: React.FC = () => {
   const { onError, onSuccess } = useNotifications();
 
   const createCreditTariffUseCase = new CreateCreditTariffUseCase(
-    creditRepository,
+    creditRepository.createCreditTariff,
     onError,
     onSuccess,
   );

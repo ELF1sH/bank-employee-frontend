@@ -33,7 +33,7 @@ export class CreateTariffModalViewModel {
 
     const tariffPayload = { ...tariffPayloadArray } as unknown as ICreateCreditTariffPayload;
 
-    await this._createCreditTariffUseCase.createCreditTariff(tariffPayload);
+    await this._createCreditTariffUseCase.fetch(tariffPayload);
 
     window.location.reload();
   }

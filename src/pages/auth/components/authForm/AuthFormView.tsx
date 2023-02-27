@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form } from 'antd';
+import { observer } from 'mobx-react-lite';
 
 import Input from '../../../../components/ui/atoms/input/Input';
 import InputPassword from '../../../../components/ui/atoms/input/InputPassword';
@@ -40,4 +41,4 @@ const AuthFormView: React.FC<AuthFormViewProps> = ({
   </Form>
 );
 
-export default AuthFormView;
+export default observer(AuthFormView);

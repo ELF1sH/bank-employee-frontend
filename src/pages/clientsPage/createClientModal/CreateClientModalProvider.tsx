@@ -1,10 +1,10 @@
 import React from 'react';
 
 import CreateClientModalController from './CreateClientModalController';
-import { CreateClientUseCase } from '../../../domain/useCases/clients/CreateClientUseCase';
 import { clientsRepository } from '../../../domain/repositories/api/ClientsRepository';
 import { useNotifications } from '../../../modules/notification/useNotifications';
 import { CreateClientModalViewModel } from './CreateClientModalViewModel';
+import { CreateClientUseCase } from '../../../domain/useCases/clients/CreateClientUseCase';
 
 interface CreateClientModalProviderProps {
   isModalOpened: boolean;
@@ -17,7 +17,11 @@ const CreateClientModalProvider: React.FC<CreateClientModalProviderProps> = ({
 }) => {
   const { onError, onSuccess } = useNotifications();
 
-  const createClientUseCase = new CreateClientUseCase(clientsRepository, onError, onSuccess);
+  const createClientUseCase = new CreateClientUseCase(
+    clientsRepository.createClient,
+    onError,
+    onSuccess,
+  );
 
   const viewModel = new CreateClientModalViewModel(createClientUseCase);
 

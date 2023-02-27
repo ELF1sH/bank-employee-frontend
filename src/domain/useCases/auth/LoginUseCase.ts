@@ -1,36 +1,36 @@
-import { AxiosError } from 'axios';
 import { NavigateFunction } from 'react-router-dom';
 
-import { IAuthRepository } from '../../repositories/api/interfaces/IAuthRepository';
 import { ILoginPayload, ILoginResponse } from '../../entities/auth/auth';
 import { ITokenRepository } from '../../repositories/other/interfaces/ITokenRepository';
-import { ShowErrorFunction, ErrorNotificationType } from '../../../modules/notification/types';
+import { ErrorNotificationType, ShowErrorFunction } from '../../../modules/notification/types';
+import { APIUseCase } from '../common/APIUseCase';
 
-export class LoginUseCase {
+export class LoginUseCase extends APIUseCase<ILoginPayload, ILoginResponse> {
   constructor(
-    private readonly _authRepository: IAuthRepository,
+    requestCallback: (payload: ILoginPayload) => Promise<ILoginResponse>,
     private readonly _tokenRepository: ITokenRepository,
-    private readonly _onError: ShowErrorFunction,
+    onError: ShowErrorFunction,
     private readonly _navigate: NavigateFunction,
-  ) { }
+  ) {
+    super(
+      requestCallback,
+      onError,
+      undefined,
+      ErrorNotificationType.INCORRECT_LOGIN_OR_PASSWORD,
+      undefined,
+    );
+  }
 
-  public async login(loginPayload: ILoginPayload): Promise<ILoginResponse | void> {
-    try {
-      const res = await this._authRepository?.login(loginPayload);
+  public async fetch(loginPayload: ILoginPayload): Promise<ILoginResponse | void> {
+    return super.fetch(loginPayload)
+      .then((data) => {
+        const accessToken = data?.accessToken;
 
-      const accessToken = res?.accessToken;
+        if (accessToken) {
+          this._tokenRepository?.setAccessToken(accessToken);
 
-      if (accessToken) {
-        this._tokenRepository?.setAccessToken(accessToken);
-      }
-
-      this._navigate('/clients');
-    } catch (e) {
-      const axiosError = (e as AxiosError).response;
-
-      if (axiosError?.status === 400) {
-        this._onError(ErrorNotificationType.INCORRECT_LOGIN_OR_PASSWORD);
-      }
-    }
+          this._navigate('/clients');
+        }
+      });
   }
 }

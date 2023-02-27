@@ -14,21 +14,21 @@ mockGettingBankAccount();
 mockGettingOperationsHistory();
 
 class BankAccountRepository implements IBankAccountRepository {
-  public getBankAccounts(id: string) {
+  public getBankAccounts(payload: { id: string }) {
     return axios
-      .get(`/bank-accounts?id=${id}`)
+      .get(`/bank-accounts?id=${payload.id}`)
       .then((response: AxiosResponse<IBankAccount[]>) => response.data);
   }
 
-  public getBankAccount(id: string) {
+  public getBankAccount(payload: { id: string }) {
     return axios
-      .get(`/bank-account?id=${id}`)
+      .get(`/bank-account?id=${payload.id}`)
       .then((response: AxiosResponse<IBankAccount>) => response.data);
   }
 
-  public getOperationsHistory(id: string) {
+  public getOperationsHistory(payload: { id: string }) {
     return axios
-      .get(`/operations-history?id=${id}`)
+      .get(`/operations-history?id=${payload.id}`)
       .then((response: AxiosResponse<IOperation[]>) => response.data);
   }
 }

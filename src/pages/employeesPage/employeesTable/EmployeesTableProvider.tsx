@@ -9,7 +9,7 @@ import { employeesRepository } from '../../../domain/repositories/api/EmployeesR
 const EmployeesTableProvider: React.FC = () => {
   const { onError } = useNotifications();
 
-  const getEmployeesUseCase = new GetEmployeesUseCase(employeesRepository, onError);
+  const getEmployeesUseCase = new GetEmployeesUseCase(employeesRepository.getEmployees, onError);
 
   const viewModel = new EmployeesTableViewModel(getEmployeesUseCase);
 

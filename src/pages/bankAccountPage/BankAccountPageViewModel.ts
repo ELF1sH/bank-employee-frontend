@@ -40,7 +40,7 @@ export class BankAccountPageViewModel {
   @action public getBankAccount(id: string) {
     this._setIsLoading(true);
 
-    this._getBankAccountUseCase.getBankAccount(id)
+    this._getBankAccountUseCase.fetch({ id })
       .then((bankAccount) => {
         if (bankAccount) {
           runInAction(() => {
@@ -56,7 +56,7 @@ export class BankAccountPageViewModel {
   @action public getOperationsHistory(id: string) {
     this._setIsLoading(true);
 
-    this._getOperationsHistoryUseCase.getOperationsHistory(id)
+    this._getOperationsHistoryUseCase.fetch({ id })
       .then((operationsHistory) => {
         if (operationsHistory) {
           runInAction(() => {

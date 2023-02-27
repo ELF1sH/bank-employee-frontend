@@ -1,4 +1,3 @@
-import { IClientsRepository } from '../../repositories/api/interfaces/IClientsRepository';
 import {
   ErrorNotificationType,
   ShowErrorFunction,
@@ -6,22 +5,20 @@ import {
   SuccessNotificationType,
 } from '../../../modules/notification/types';
 import { IClient, ICreateClientPayload } from '../../entities/users/client';
+import { APIUseCase } from '../common/APIUseCase';
 
-export class CreateClientUseCase {
-  public constructor(
-    private _clientsRepository: IClientsRepository,
-    private readonly _onError: ShowErrorFunction,
-    private readonly _onSuccess: ShowSuccessNotificationFunction,
-  ) { }
-
-  public async createClient(payload: ICreateClientPayload): Promise<IClient | void> {
-    return this._clientsRepository.createClient(payload)
-      .then((value) => {
-        this._onSuccess(SuccessNotificationType.SUCCESSFULLY_CREATED);
-        return value;
-      })
-      .catch(() => {
-        this._onError(ErrorNotificationType.FAILED_TO_SEND_DATA);
-      });
+export class CreateClientUseCase extends APIUseCase<ICreateClientPayload, IClient> {
+  constructor(
+    requestCallback: (payload: ICreateClientPayload) => Promise<IClient>,
+    onError: ShowErrorFunction,
+    onSuccess: ShowSuccessNotificationFunction,
+  ) {
+    super(
+      requestCallback,
+      onError,
+      onSuccess,
+      ErrorNotificationType.FAILED_TO_SEND_DATA,
+      SuccessNotificationType.SUCCESSFULLY_CREATED,
+    );
   }
 }

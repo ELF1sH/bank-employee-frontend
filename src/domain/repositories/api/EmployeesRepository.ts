@@ -16,9 +16,9 @@ class EmployeesRepository implements IEmployeesRepository {
       .then((response: AxiosResponse<IGetEmployeesResponse>) => response.data);
   }
 
-  getEmployee(id: string) {
+  getEmployee(payload: { id: string }) {
     return axios
-      .get(`/employee?id=${id}`)
+      .get(`/employee?id=${payload.id}`)
       .then((response: AxiosResponse<IEmployee>) => response.data);
   }
 

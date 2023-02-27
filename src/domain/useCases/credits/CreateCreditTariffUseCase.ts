@@ -4,25 +4,21 @@ import {
   ShowSuccessNotificationFunction,
   SuccessNotificationType,
 } from '../../../modules/notification/types';
-import { ICreditRepository } from '../../repositories/api/interfaces/ICreditRepository';
-import { ICreateCreditTariffPayload, ICreditTariff } from '../../entities/credit/creditTariff';
+import { ICreateCreditTariffPayload } from '../../entities/credit/creditTariff';
+import { APIUseCase } from '../common/APIUseCase';
 
-export class CreateCreditTariffUseCase {
+export class CreateCreditTariffUseCase extends APIUseCase<ICreateCreditTariffPayload, void> {
   public constructor(
-    private _creditRepository: ICreditRepository,
-    private readonly _onError: ShowErrorFunction,
-    private readonly _onSuccess: ShowSuccessNotificationFunction,
-  ) { }
-
-  public async createCreditTariff(
-    payload: ICreateCreditTariffPayload,
-  ): Promise<void> {
-    return this._creditRepository.createCreditTariff(payload)
-      .then(() => {
-        this._onSuccess(SuccessNotificationType.SUCCESSFULLY_CREATED);
-      })
-      .catch(() => {
-        this._onError(ErrorNotificationType.FAILED_TO_SEND_DATA);
-      });
+    requestCallback: (payload: ICreateCreditTariffPayload) => Promise<void>,
+    onError: ShowErrorFunction,
+    onSuccess: ShowSuccessNotificationFunction,
+  ) {
+    super(
+      requestCallback,
+      onError,
+      onSuccess,
+      ErrorNotificationType.FAILED_TO_SEND_DATA,
+      SuccessNotificationType.SUCCESSFULLY_CREATED,
+    );
   }
 }

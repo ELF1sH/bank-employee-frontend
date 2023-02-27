@@ -40,10 +40,10 @@ export class EmployeesTableViewModel {
       this._isLoading = true;
     });
 
-    const employeesResponse = await this._getEmployeesUseCase.getEmployees(
-      this._pagination.current!,
-      this._pagination.pageSize!,
-    );
+    const employeesResponse = await this._getEmployeesUseCase.fetch({
+      currentPage: this._pagination.current!,
+      itemsPerPage: this._pagination.pageSize!,
+    });
 
     runInAction(() => {
       this._employees = employeesResponse?.employees ?? [];

@@ -40,10 +40,10 @@ export class ClientsTableViewModel {
       this._isLoading = true;
     });
 
-    const clientsResponse = await this._getClientsUseCase.getClients(
-      this._pagination.current!,
-      this._pagination.pageSize!,
-    );
+    const clientsResponse = await this._getClientsUseCase.fetch({
+      currentPage: this._pagination.current!,
+      itemsPerPage: this._pagination.pageSize!,
+    });
 
     runInAction(() => {
       this._clients = clientsResponse?.clients ?? [];

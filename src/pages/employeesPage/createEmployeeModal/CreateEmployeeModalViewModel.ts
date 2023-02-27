@@ -33,6 +33,6 @@ export class CreateEmployeeModalViewModel {
 
     const employeePayload = { ...employeePayloadArray } as unknown as ICreateEmployeePayload;
 
-    return this._createEmployeeUseCase.createEmployee(employeePayload);
+    return this._createEmployeeUseCase.fetch(employeePayload);
   }
 }

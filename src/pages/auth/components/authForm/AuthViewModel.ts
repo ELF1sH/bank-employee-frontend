@@ -9,7 +9,7 @@ export class AuthViewModel {
   @observable private _isLoading: boolean = false;
 
   constructor(
-    private _loginUseCase: LoginUseCase | null = null,
+    private _loginUseCase: LoginUseCase,
   ) {
     makeObservable(this);
   }
@@ -28,7 +28,7 @@ export class AuthViewModel {
       this._isLoading = true;
     });
 
-    await this._loginUseCase?.login(loginPayload);
+    await this._loginUseCase?.fetch(loginPayload);
 
     runInAction(() => {
       this._isLoading = false;

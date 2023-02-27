@@ -9,9 +9,14 @@ import { useNotifications } from '../../../modules/notification/useNotifications
 const ClientsTableProvider: React.FC = () => {
   const { onError } = useNotifications();
 
-  const getClientsUseCase = new GetClientsUseCase(clientsRepository, onError);
+  // const getClientsUseCase = new GetClientsUseCase(clientsRepository, onError);
 
-  const viewModel = new ClientsTableViewModel(getClientsUseCase);
+  const getClientsUseCase1 = new GetClientsUseCase(
+    clientsRepository.getClients,
+    onError,
+  );
+
+  const viewModel = new ClientsTableViewModel(getClientsUseCase1);
 
   return (
     <ClientsTableController viewModel={viewModel} />
