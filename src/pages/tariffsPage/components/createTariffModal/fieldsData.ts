@@ -1,4 +1,4 @@
-import { FieldData } from '../../../utils/form/fieldData';
+import { FieldData } from '../../../../utils/form/fieldData';
 
 export const fieldsData: FieldData[] = [
   {

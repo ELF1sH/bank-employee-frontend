@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 
 import TariffsGridView, { TariffsGridViewProps } from './TariffsGridView';
 import { TariffsGridViewModel } from './TariffsGridViewModel';
-import WithLoader from '../../../components/ui/molecules/withLoader/WithLoader';
+import WithLoader from '../../../../components/ui/molecules/withLoader/WithLoader';
 
 const TariffsGridViewWithLoader = WithLoader<TariffsGridViewProps>(TariffsGridView, true);
 

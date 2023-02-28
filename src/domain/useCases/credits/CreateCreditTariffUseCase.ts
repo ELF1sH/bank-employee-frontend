@@ -4,12 +4,14 @@ import {
   ShowSuccessNotificationFunction,
   SuccessNotificationType,
 } from '../../../modules/notification/types';
-import { ICreateCreditTariffPayload } from '../../entities/credit/creditTariff';
+import { ICreateCreditTariffPayload, ICreditTariff } from '../../entities/credit/creditTariff';
 import { APIUseCase } from '../common/APIUseCase';
 
-export class CreateCreditTariffUseCase extends APIUseCase<ICreateCreditTariffPayload, void> {
+export class CreateCreditTariffUseCase extends APIUseCase<
+  ICreateCreditTariffPayload, ICreditTariff[]
+> {
   public constructor(
-    requestCallback: (payload: ICreateCreditTariffPayload) => Promise<void>,
+    requestCallback: (payload: ICreateCreditTariffPayload) => Promise<ICreditTariff[]>,
     onError: ShowErrorFunction,
     onSuccess: ShowSuccessNotificationFunction,
   ) {

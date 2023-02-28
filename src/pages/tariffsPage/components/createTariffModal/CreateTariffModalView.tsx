@@ -1,9 +1,9 @@
 import React from 'react';
 import { Form, FormInstance, Modal } from 'antd';
 
-import { FieldData } from '../../../utils/form/fieldData';
-import Input from '../../../components/ui/atoms/input/Input';
-import { FormErrors } from '../../../utils/form/useFormError';
+import { FieldData } from '../../../../utils/form/fieldData';
+import Input from '../../../../components/ui/atoms/input/Input';
+import { FormErrors } from '../../../../utils/form/useFormError';
 
 interface CreateTariffModalViewProps {
   form: FormInstance;

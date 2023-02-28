@@ -1,39 +1,39 @@
 import React, { useContext } from 'react';
 import { useForm } from 'antd/es/form/Form';
 import { observer } from 'mobx-react-lite';
-import { useNavigate } from 'react-router-dom';
 
 import CreateTariffModalView from './CreateTariffModalView';
-import { useFormError } from '../../../utils/form/useFormError';
+import { useFormError } from '../../../../utils/form/useFormError';
 import { CreateTariffModalViewModel } from './CreateTariffModalViewModel';
-import { FieldData } from '../../../utils/form/fieldData';
-import { ModalCreateTariffContext } from '../TariffsPageController';
+import { FieldData } from '../../../../utils/form/fieldData';
+import { TariffsPageStore } from '../../store/TariffsPageStore';
 
 interface CreateTariffModalControllerProps {
   viewModel: CreateTariffModalViewModel;
+  pageStore: TariffsPageStore,
 }
 
 const CreateTariffModalController: React.FC<CreateTariffModalControllerProps> = ({
   viewModel,
+  pageStore,
 }) => {
   const [form] = useForm();
 
   const { getValidateMessages } = useFormError();
 
-  const { isModalOpened, setIsModalOpened } = useContext(ModalCreateTariffContext)!;
-
   const handleOk = () => {
     form
       .validateFields()
       .then(() => {
-        setIsModalOpened(false);
+        pageStore.setIsModalOpened(false);
+
         return viewModel.createTariff();
       })
       .catch(((e) => {}));
   };
 
   const handleCancel = () => {
-    setIsModalOpened(false);
+    pageStore.setIsModalOpened(false);
   };
 
   const onChange = (fieldsData: FieldData[]) => {
@@ -43,7 +43,7 @@ const CreateTariffModalController: React.FC<CreateTariffModalControllerProps> = 
   return (
     <CreateTariffModalView
       form={form}
-      isModalOpened={isModalOpened}
+      isModalOpened={pageStore.isModalOpened}
       fields={viewModel.fieldsData}
       onChange={onChange}
       handleOk={handleOk}

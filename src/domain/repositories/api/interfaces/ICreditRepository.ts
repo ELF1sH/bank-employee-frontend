@@ -2,5 +2,5 @@ import { ICreateCreditTariffPayload, ICreditTariff } from '../../../entities/cre
 
 export interface ICreditRepository {
   getCreditTariffs: () => Promise<ICreditTariff[]>;
-  createCreditTariff: (payload: ICreateCreditTariffPayload) => Promise<void>;
+  createCreditTariff: (payload: ICreateCreditTariffPayload) => Promise<ICreditTariff[]>;
 }

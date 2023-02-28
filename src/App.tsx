@@ -6,7 +6,7 @@ import AuthPage from './pages/auth/AuthPage';
 import ClientsPage from './pages/clientsPage/ClientsPageController';
 import ClientPage from './pages/clientPage/ClientPageProvider';
 import EmployeesPage from './pages/employeesPage/EmployeesPageController';
-import TariffsPage from './pages/tariffsPage/TariffsPageController';
+import TariffsPage from './pages/tariffsPage/TariffsPage';
 import BankAccountPage from './pages/bankAccountPage/BankAccountPageProvider';
 import EmployeePage from './pages/employeePage/EmployeePageProvider';
 

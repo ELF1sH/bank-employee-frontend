@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Typography } from 'antd';
 import Paragraph from 'antd/es/typography/Paragraph';
 
-import { ICreditTariff } from '../../../domain/entities/credit/creditTariff';
+import { ICreditTariff } from '../../../../domain/entities/credit/creditTariff';
 import CreateCreditTariffModal from '../createTariffModal/CreateTariffModalProvider';
 
 const { Text } = Typography;

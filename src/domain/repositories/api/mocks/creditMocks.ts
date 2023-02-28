@@ -10,5 +10,5 @@ export const mockGettingCreditTariffs = () => {
 export const mockCreatingCreditTariff = () => {
   mock
     .onPost('/create-credit-tariff')
-    .reply(() => [200]);
+    .reply(() => [200, getCreditTariffs]);
 };

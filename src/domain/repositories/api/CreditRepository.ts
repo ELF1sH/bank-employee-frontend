@@ -14,9 +14,10 @@ class CreditRepository implements ICreditRepository {
       .then((response: AxiosResponse<ICreditTariff[]>) => response.data);
   }
 
-  public createCreditTariff(payload: ICreateCreditTariffPayload): Promise<void> {
+  public createCreditTariff(payload: ICreateCreditTariffPayload): Promise<ICreditTariff[]> {
     return axios
-      .post('/create-credit-tariff', payload);
+      .post('/create-credit-tariff', payload)
+      .then((response: AxiosResponse<ICreditTariff[]>) => response.data);
   }
 }
 
