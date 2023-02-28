@@ -5,3 +5,7 @@ export interface FieldData {
   validating?: boolean;
   errors?: string[];
 }
+
+export interface FieldsData {
+  [key: string]: string;
+}

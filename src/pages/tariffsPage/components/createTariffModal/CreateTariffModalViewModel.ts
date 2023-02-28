@@ -1,15 +1,17 @@
 import {
-  action, computed, makeObservable, observable, runInAction, toJS,
+  action, makeObservable, observable,
 } from 'mobx';
 
-import { FieldData } from '../../../../utils/form/fieldData';
-import { fieldsData } from './fieldsData';
 import { ICreateCreditTariffPayload } from '../../../../domain/entities/credit/creditTariff';
 import { CreateCreditTariffUseCase } from '../../../../domain/useCases/credits/CreateCreditTariffUseCase';
 import { TariffsPageStore } from '../../store/TariffsPageStore';
+import { FieldsData } from '../../../../utils/form/fieldData';
+import MobxHelper from '../../../../utils/MobxHelper';
 
 export class CreateTariffModalViewModel {
-  @observable private _fieldsData: FieldData[] = fieldsData;
+  @observable public confirmLoading: boolean = false;
+
+  private _mobxHelper = new MobxHelper<typeof this>(this);
 
   public constructor(
     private _createCreditTariffUseCase: CreateCreditTariffUseCase,
@@ -18,29 +20,16 @@ export class CreateTariffModalViewModel {
     makeObservable(this);
   }
 
-  @computed public get fieldsData() {
-    return toJS(this._fieldsData);
-  }
+  @action public setConfirmLoading = (value: boolean) => this._mobxHelper.toggle('confirmLoading', value);
 
-  @action public setFieldsData(fieldsData: FieldData[]) {
-    this._fieldsData = fieldsData;
-  }
+  @action public async createTariff(fieldsData: FieldsData) {
+    this.setConfirmLoading(true);
 
-  @action public async createTariff() {
-    this._pageStore.setIsLoading(true);
-
-    const tariffPayloadArray = this.fieldsData.map((field) => (
-      {
-        [field.name.toString()]: field.value,
-      }
-    ));
-
-    const tariffPayload = { ...tariffPayloadArray } as unknown as ICreateCreditTariffPayload;
+    const tariffPayload = fieldsData as unknown as ICreateCreditTariffPayload;
 
     const tariffs = await this._createCreditTariffUseCase.fetch(tariffPayload);
 
     this._pageStore.setTariffs(tariffs ?? []);
-
-    this._pageStore.setIsLoading(false);
+    this.setConfirmLoading(false);
   }
 }

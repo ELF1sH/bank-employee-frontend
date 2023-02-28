@@ -8,8 +8,7 @@ import { FormErrors } from '../../../../utils/form/useFormError';
 interface CreateTariffModalViewProps {
   form: FormInstance;
   isModalOpened: boolean;
-  fields: FieldData[];
-  onChange: (fields: FieldData[]) => void;
+  confirmLoading: boolean,
   handleOk: () => void;
   handleCancel: () => void;
   getValidateMessages: () => FormErrors;
@@ -18,18 +17,21 @@ interface CreateTariffModalViewProps {
 const CreateTariffModalView: React.FC<CreateTariffModalViewProps> = ({
   form,
   isModalOpened,
-  fields,
-  onChange,
+  confirmLoading,
   handleOk,
   handleCancel,
   getValidateMessages,
 }) => (
-  <Modal title="Create new client" open={isModalOpened} onOk={handleOk} onCancel={handleCancel}>
+  <Modal
+    title="Create new client"
+    open={isModalOpened}
+    onOk={handleOk}
+    onCancel={handleCancel}
+    confirmLoading={confirmLoading}
+  >
     <Form
       form={form}
       layout="vertical"
-      fields={fields}
-      onFieldsChange={(_, allFields) => { onChange(allFields); }}
       validateMessages={getValidateMessages()}
     >
       <Form.Item

@@ -24,10 +24,10 @@ const CreateTariffModalController: React.FC<CreateTariffModalControllerProps> = 
   const handleOk = () => {
     form
       .validateFields()
+      .then((values) => viewModel.createTariff(values))
       .then(() => {
         pageStore.setIsModalOpened(false);
-
-        return viewModel.createTariff();
+        form.resetFields();
       })
       .catch(((e) => {}));
   };
@@ -36,16 +36,11 @@ const CreateTariffModalController: React.FC<CreateTariffModalControllerProps> = 
     pageStore.setIsModalOpened(false);
   };
 
-  const onChange = (fieldsData: FieldData[]) => {
-    viewModel.setFieldsData(fieldsData);
-  };
-
   return (
     <CreateTariffModalView
       form={form}
       isModalOpened={pageStore.isModalOpened}
-      fields={viewModel.fieldsData}
-      onChange={onChange}
+      confirmLoading={viewModel.confirmLoading}
       handleOk={handleOk}
       handleCancel={handleCancel}
       getValidateMessages={getValidateMessages}
