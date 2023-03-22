@@ -46,13 +46,7 @@ export class EmployeesTableViewModel {
     });
 
     runInAction(() => {
-      this._employees = employeesResponse?.employees ?? [];
-
-      this._pagination = {
-        current: employeesResponse?.currentPage,
-        pageSize: employeesResponse?.itemsPerPage,
-        total: employeesResponse?.totalItems,
-      };
+      this._employees = employeesResponse ?? [];
     });
 
     runInAction(() => {

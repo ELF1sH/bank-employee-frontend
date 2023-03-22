@@ -46,13 +46,7 @@ export class ClientsTableViewModel {
     });
 
     runInAction(() => {
-      this._clients = clientsResponse?.clients ?? [];
-
-      this._pagination = {
-        current: clientsResponse?.currentPage,
-        pageSize: clientsResponse?.itemsPerPage,
-        total: clientsResponse?.totalItems,
-      };
+      this._clients = clientsResponse ?? [];
     });
 
     runInAction(() => {

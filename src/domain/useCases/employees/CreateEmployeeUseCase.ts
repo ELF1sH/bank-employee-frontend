@@ -4,12 +4,16 @@ import {
   ShowSuccessNotificationFunction,
   SuccessNotificationType,
 } from '../../../modules/notification/types';
-import { ICreateEmployeePayload, IEmployee } from '../../entities/users/employee';
+import { ICreateEmployeePayload } from '../../entities/users/employee';
 import { APIUseCase } from '../common/APIUseCase';
+import { ICreateEmployeeResponse } from '../../repositories/api/interfaces/IEmployeesRepository';
 
-export class CreateEmployeeUseCase extends APIUseCase<ICreateEmployeePayload, IEmployee> {
+export class CreateEmployeeUseCase extends APIUseCase<
+  ICreateEmployeePayload,
+  ICreateEmployeeResponse
+> {
   public constructor(
-    requestCallback: (payload: ICreateEmployeePayload) => Promise<IEmployee>,
+    requestCallback: (payload: ICreateEmployeePayload) => Promise<ICreateEmployeeResponse>,
     onError: ShowErrorFunction,
     onSuccess: ShowSuccessNotificationFunction,
   ) {

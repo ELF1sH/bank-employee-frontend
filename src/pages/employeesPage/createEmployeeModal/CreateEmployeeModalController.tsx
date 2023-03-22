@@ -31,11 +31,10 @@ const CreateEmployeeModalController: React.FC<CreateEmployeeModalControllerProps
     form
       .validateFields()
       .then(() => viewModel.createEmployee())
-      .then((employee) => {
-        if (employee) {
-          navigate(employee.id);
+      .then((data) => {
+        if (data && data.id) {
+          navigate(`/employees/${data.id}`);
         }
-
         setIsModalOpened(false);
       })
       .catch(((e) => {}));

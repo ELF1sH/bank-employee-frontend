@@ -1,7 +1,7 @@
 import { IUser } from './user';
 
 export interface IEmployee extends IUser {
-  jobPosition: JobPosition,
+
 }
 
 export enum JobPosition {
@@ -13,6 +13,5 @@ export enum JobPosition {
 export interface ICreateEmployeePayload {
   firstName: string;
   lastName: string;
-  middleName: string;
   jobPosition: number;
 }

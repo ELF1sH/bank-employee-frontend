@@ -22,7 +22,13 @@ const TariffsGridView: React.FC<TariffsGridViewProps> = ({
             <Paragraph>
               <Text strong>Interest rate:</Text>
               &nbsp;
-              {tariff.interestRate}
+              {tariff.percent}
+              %
+            </Paragraph>
+            <Paragraph>
+              <Text strong>Sum:</Text>
+              &nbsp;
+              {tariff.balance}
               %
             </Paragraph>
           </Card>

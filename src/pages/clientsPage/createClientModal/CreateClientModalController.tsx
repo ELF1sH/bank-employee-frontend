@@ -29,12 +29,12 @@ const CreateClientModalController: React.FC<CreateClientModalControllerProps> = 
     form
       .validateFields()
       .then(() => viewModel.createClient())
-      .then((client) => {
-        if (client) {
-          navigate(client.id);
-        }
-
+      .then((data) => {
         setIsModalOpened(false);
+
+        if (data && data.id) {
+          navigate(`clients/${data.id}`);
+        }
       })
       .catch(((e) => {}));
   };

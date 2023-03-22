@@ -4,12 +4,13 @@ import {
   ShowSuccessNotificationFunction,
   SuccessNotificationType,
 } from '../../../modules/notification/types';
-import { IClient, ICreateClientPayload } from '../../entities/users/client';
+import { ICreateClientPayload } from '../../entities/users/client';
 import { APIUseCase } from '../common/APIUseCase';
+import { ICreateClientResponse } from '../../repositories/api/interfaces/IClientsRepository';
 
-export class CreateClientUseCase extends APIUseCase<ICreateClientPayload, IClient> {
+export class CreateClientUseCase extends APIUseCase<ICreateClientPayload, ICreateClientResponse> {
   constructor(
-    requestCallback: (payload: ICreateClientPayload) => Promise<IClient>,
+    requestCallback: (payload: ICreateClientPayload) => Promise<ICreateClientResponse>,
     onError: ShowErrorFunction,
     onSuccess: ShowSuccessNotificationFunction,
   ) {

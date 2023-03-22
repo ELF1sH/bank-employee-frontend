@@ -22,15 +22,16 @@ export class LoginUseCase extends APIUseCase<ILoginPayload, ILoginResponse> {
   }
 
   public async fetch(loginPayload: ILoginPayload): Promise<ILoginResponse | void> {
-    return super.fetch(loginPayload)
-      .then((data) => {
-        const accessToken = data?.accessToken;
-
-        if (accessToken) {
-          this._tokenRepository?.setAccessToken(accessToken);
-
-          this._navigate('/clients');
-        }
-      });
+    this._navigate('/clients');
+    // return super.fetch(loginPayload)
+    //   .then((data) => {
+    //     const accessToken = data?.accessToken;
+    //
+    //     if (accessToken) {
+    //       this._tokenRepository?.setAccessToken(accessToken);
+    //
+    //       this._navigate('/clients');
+    //     }
+    //   });
   }
 }

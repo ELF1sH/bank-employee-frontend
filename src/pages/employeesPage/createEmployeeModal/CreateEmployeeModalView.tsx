@@ -53,14 +53,6 @@ const CreateEmployeeModalView: React.FC<CreateEmployeeViewProps> = ({
       </Form.Item>
 
       <Form.Item
-        name="middleName"
-        label="Middle name"
-        rules={[{ required: true }]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
         name="jobPosition"
         label="Job Position"
         rules={[{ required: true }]}

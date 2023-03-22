@@ -2,9 +2,9 @@ import {
   action, computed, makeObservable, observable, runInAction, toJS,
 } from 'mobx';
 
-import { BlockUserUseCase } from '../../domain/useCases/users/BlockUserUseCase';
 import { IEmployee } from '../../domain/entities/users/employee';
 import { GetEmployeeUseCase } from '../../domain/useCases/employees/GetEmployeeUseCase';
+import { BlockEmployeeUseCase } from '../../domain/useCases/employees/BlockEmployeeUseCase';
 
 export class EmployeePageViewModel {
   @observable private _isLoading: boolean = true;
@@ -13,7 +13,7 @@ export class EmployeePageViewModel {
 
   public constructor(
     private _getEmployeeUseCase: GetEmployeeUseCase,
-    private _blockUserUseCase: BlockUserUseCase,
+    private _blockUserUseCase: BlockEmployeeUseCase,
   ) {
     makeObservable(this);
   }
@@ -48,12 +48,8 @@ export class EmployeePageViewModel {
 
   @action public blockUser(id: string) {
     this._blockUserUseCase.fetch({ id })
-      .then((data) => {
-        if (data) {
-          runInAction(() => {
-            this._employee = data as IEmployee;
-          });
-        }
+      .then(() => {
+        this.getEmployee(id);
       });
   }
 }

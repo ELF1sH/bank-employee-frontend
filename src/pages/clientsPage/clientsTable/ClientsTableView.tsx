@@ -33,10 +33,7 @@ const ClientsTableView: React.FC<ClientsTableViewProps> = ({
     <ColumnGroup title="Name">
       <Column title="First Name" dataIndex="firstName" key="firstName" />
       <Column title="Last Name" dataIndex="lastName" key="lastName" />
-      <Column title="Middle Name" dataIndex="lastName" key="middleName" />
     </ColumnGroup>
-    <Column title="Bank accounts" dataIndex="numberOfBankAccounts" key="numberOfBankAccounts" />
-    <Column title="Credits" dataIndex="numberOfCredits" key="numberOfCredits" />
     <Column
       title="Tags"
       dataIndex="tags"

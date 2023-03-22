@@ -7,8 +7,7 @@ import { ClientPageViewModel } from './ClientPageViewModel';
 import { GetClientUseCase } from '../../domain/useCases/clients/GetClientUseCase';
 import { GetBankAccountsUseCase } from '../../domain/useCases/bankAccounts/GetBankAccountsUseCase';
 import { bankAccountRepository } from '../../domain/repositories/api/BankAccountRepository';
-import { BlockUserUseCase } from '../../domain/useCases/users/BlockUserUseCase';
-import { usersRepository } from '../../domain/repositories/api/UsersRepository';
+import { BlockClientUseCase } from '../../domain/useCases/clients/BlockClientUseCase';
 
 const ClientPageProvider: React.FC = () => {
   const { onError, onSuccess } = useNotifications();
@@ -20,12 +19,16 @@ const ClientPageProvider: React.FC = () => {
     onError,
   );
 
-  const blockUserUseCase = new BlockUserUseCase(usersRepository.blockUser, onError, onSuccess);
+  const blockClientUseCase = new BlockClientUseCase(
+    clientsRepository.blockClient,
+    onError,
+    onSuccess,
+  );
 
   const viewModel = new ClientPageViewModel(
     getClientUseCase,
     getBankAccountsUseCase,
-    blockUserUseCase,
+    blockClientUseCase,
   );
 
   return (

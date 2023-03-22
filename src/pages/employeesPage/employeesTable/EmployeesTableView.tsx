@@ -36,15 +36,13 @@ const EmployeesTableView: React.FC<ClientsTableViewProps> = ({
     <ColumnGroup title="Name">
       <Column title="First Name" dataIndex="firstName" key="firstName" />
       <Column title="Last Name" dataIndex="lastName" key="lastName" />
-      <Column title="Middle Name" dataIndex="lastName" key="middleName" />
     </ColumnGroup>
     <Column
       title="Tags"
       dataIndex="tags"
       key="tags"
-      render={(_, { jobPosition, isBlocked }: IEmployee) => (
+      render={(_, { isBlocked }: IEmployee) => (
         <>
-          <Tag color={getJobPositionColor(jobPosition)}>{getJobPosition(jobPosition)}</Tag>
           {isBlocked && <Tag color="red">Blocked</Tag>}
         </>
       )}

@@ -22,7 +22,7 @@ const EmployeePageView: React.FC<EmployeePageViewProps> = ({
   backToEmployeesList,
 }) => (
   <>
-    <PageHeader header={`Employee '${employee.lastName} ${employee.firstName} ${employee.middleName}'`}>
+    <PageHeader header={`Employee '${employee.lastName} ${employee.firstName}'`}>
       <Button icon={<BackIcon />} onClick={backToEmployeesList}>Back to the employees list</Button>
 
       {
@@ -43,16 +43,6 @@ const EmployeePageView: React.FC<EmployeePageViewProps> = ({
       <Text strong>last name:</Text>
       &nbsp;
       {employee.lastName}
-    </Paragraph>
-    <Paragraph>
-      <Text strong>Middle name:</Text>
-      &nbsp;
-      {employee.middleName}
-    </Paragraph>
-    <Paragraph>
-      <Text strong>Job position:</Text>
-      &nbsp;
-      {getJobPosition(employee.jobPosition)}
     </Paragraph>
   </>
 );

@@ -2,16 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 
 import { IBankAccountRepository } from './interfaces/IBankAccountRepository';
 import { IBankAccount } from '../../entities/bankAccounts/bankAccount';
-import {
-  mockGettingBankAccount,
-  mockGettingBankAccountsList,
-  mockGettingOperationsHistory,
-} from './mocks/bankAccountMocks';
 import { IOperation } from '../../entities/bankAccounts/operation';
-
-mockGettingBankAccountsList();
-mockGettingBankAccount();
-mockGettingOperationsHistory();
 
 class BankAccountRepository implements IBankAccountRepository {
   public getBankAccounts(payload: { id: string }) {

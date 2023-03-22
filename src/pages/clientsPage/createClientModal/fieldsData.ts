@@ -9,8 +9,4 @@ export const fieldsData: FieldData[] = [
     name: 'lastName',
     value: '',
   },
-  {
-    name: 'middleName',
-    value: '',
-  },
 ];

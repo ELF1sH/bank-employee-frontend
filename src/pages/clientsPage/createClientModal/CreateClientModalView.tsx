@@ -47,14 +47,6 @@ const CreateClientModalView: React.FC<CreateClientViewProps> = ({
       >
         <Input />
       </Form.Item>
-
-      <Form.Item
-        name="middleName"
-        label="Middle name"
-        rules={[{ required: true }]}
-      >
-        <Input />
-      </Form.Item>
     </Form>
   </Modal>
 );

@@ -1,31 +1,32 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { IEmployeesRepository, IGetEmployeesResponse } from './interfaces/IEmployeesRepository';
+import { ICreateEmployeeResponse, IEmployeesRepository, IGetEmployeesResponse } from './interfaces/IEmployeesRepository';
 import { IPaginationRequest } from '../../entities/common/pagination';
-import { mockGettingEmployeesList, mockCreatingEmployee, mockGettingEmployee } from './mocks/employeesMock';
 import { IEmployee, ICreateEmployeePayload } from '../../entities/users/employee';
-
-mockGettingEmployeesList();
-mockGettingEmployee();
-mockCreatingEmployee();
+import { IBlockUserPayload } from './interfaces/IClientsRepository';
 
 class EmployeesRepository implements IEmployeesRepository {
   getEmployees(pagination: IPaginationRequest) {
     return axios
-      .get(`/employees?currentPage=${pagination.currentPage}&itemsPerPage=${pagination.itemsPerPage}`)
+      .get('/employees/all')
       .then((response: AxiosResponse<IGetEmployeesResponse>) => response.data);
   }
 
   getEmployee(payload: { id: string }) {
     return axios
-      .get(`/employee?id=${payload.id}`)
+      .get(`/employees/${payload.id}`)
       .then((response: AxiosResponse<IEmployee>) => response.data);
   }
 
   createEmployee(payload: ICreateEmployeePayload) {
     return axios
       .post('/create-employee', payload)
-      .then((response: AxiosResponse<IEmployee>) => response.data);
+      .then((response: AxiosResponse<ICreateEmployeeResponse>) => response.data);
+  }
+
+  async blockEmployee(payload: IBlockUserPayload) {
+    await axios
+      .post(`/employee/${payload.id}/block`);
   }
 }
 

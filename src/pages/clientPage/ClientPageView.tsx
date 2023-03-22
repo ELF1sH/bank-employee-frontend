@@ -28,7 +28,7 @@ const ClientPageView: React.FC<ClientPageViewProps> = ({
   bankToClientsList,
 }) => (
   <>
-    <PageHeader header={`Client '${client.lastName} ${client.firstName} ${client.middleName}'`}>
+    <PageHeader header={`Client '${client.lastName} ${client.firstName}'`}>
       <Button icon={<BackIcon />} onClick={bankToClientsList}>Back to the clients list</Button>
 
       {
@@ -49,21 +49,6 @@ const ClientPageView: React.FC<ClientPageViewProps> = ({
       <Text strong>last name:</Text>
       &nbsp;
       {client.lastName}
-    </Paragraph>
-    <Paragraph>
-      <Text strong>Middle name:</Text>
-      &nbsp;
-      {client.middleName}
-    </Paragraph>
-    <Paragraph>
-      <Text strong>Number of bank accounts:</Text>
-      &nbsp;
-      {client.numberOfBankAccounts}
-    </Paragraph>
-    <Paragraph>
-      <Text strong>Number of credits taken:</Text>
-      &nbsp;
-      {client.numberOfCredits}
     </Paragraph>
 
     <Title level={3}>Bank accounts</Title>

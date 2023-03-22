@@ -6,7 +6,7 @@ import { IClient } from '../../domain/entities/users/client';
 import { GetClientUseCase } from '../../domain/useCases/clients/GetClientUseCase';
 import { GetBankAccountsUseCase } from '../../domain/useCases/bankAccounts/GetBankAccountsUseCase';
 import { IBankAccount } from '../../domain/entities/bankAccounts/bankAccount';
-import { BlockUserUseCase } from '../../domain/useCases/users/BlockUserUseCase';
+import { BlockClientUseCase } from '../../domain/useCases/clients/BlockClientUseCase';
 
 export class ClientPageViewModel {
   @observable private _isLoading: boolean = true;
@@ -18,7 +18,7 @@ export class ClientPageViewModel {
   public constructor(
     private _getClientUseCase: GetClientUseCase,
     private _getBankAccountsUseCase: GetBankAccountsUseCase,
-    private _blockUserUseCase: BlockUserUseCase,
+    private _blockUserUseCase: BlockClientUseCase,
   ) {
     makeObservable(this);
   }
@@ -73,12 +73,8 @@ export class ClientPageViewModel {
 
   @action public blockUser(id: string) {
     this._blockUserUseCase.fetch({ id })
-      .then((data) => {
-        if (data) {
-          runInAction(() => {
-            this._client = data as IClient;
-          });
-        }
+      .then(() => {
+        this.getClient(id);
       });
   }
 }

@@ -43,8 +43,16 @@ const CreateTariffModalView: React.FC<CreateTariffModalViewProps> = ({
       </Form.Item>
 
       <Form.Item
-        name="interestRate"
+        name="percent"
         label="Interest rate"
+        rules={[{ required: true }]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        name="balance"
+        label="Sum"
         rules={[{ required: true }]}
       >
         <Input />
