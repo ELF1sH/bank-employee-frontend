@@ -39,7 +39,7 @@ const ClientsTableView: React.FC<ClientsTableViewProps> = ({
       dataIndex="tags"
       key="tags"
       render={(_, record: IClient) => (
-        record.isBlocked && <Tag color="red">Blocked</Tag>
+        record.isBlocked ? <Tag color="red">Blocked</Tag> : null
       )}
     />
   </Table>

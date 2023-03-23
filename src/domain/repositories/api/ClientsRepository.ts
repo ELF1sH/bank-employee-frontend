@@ -12,13 +12,13 @@ import { IClient, ICreateClientPayload } from '../../entities/users/client';
 class ClientsRepository implements IClientsRepository {
   getClients(pagination: IPaginationRequest) {
     return axios
-      .get('/clients/all')
+      .get('http://127.0.0.1:7000/api/clients/all')
       .then((response: AxiosResponse<IGetClientsResponse>) => response.data);
   }
 
   getClient(payload: { id: string }) {
     return axios
-      .get(`/clients/${payload.id}`)
+      .get(`http://127.0.0.1:7000/api/clients/${payload.id}`)
       .then((response: AxiosResponse<IClient>) => response.data);
   }
 

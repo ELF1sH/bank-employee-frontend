@@ -29,7 +29,7 @@ const ClientsTableController: React.FC<ClientsTableControllerProps> = ({ viewMod
   };
 
   const onClickRow = (id: string) => {
-    navigate(id);
+    navigate(id.toString());
   };
 
   return (

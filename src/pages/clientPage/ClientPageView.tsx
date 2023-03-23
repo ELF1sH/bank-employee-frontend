@@ -37,7 +37,7 @@ const ClientPageView: React.FC<ClientPageViewProps> = ({
     </PageHeader>
 
     {
-      client.isBlocked && <Tag style={{ marginBottom: '20px' }} color="red">BLOCKED</Tag>
+      client.isBlocked ? <Tag style={{ marginBottom: '20px' }} color="red">BLOCKED</Tag> : null
     }
 
     <Paragraph>

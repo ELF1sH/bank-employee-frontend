@@ -22,7 +22,7 @@ const ClientPageController: React.FC<ClientPageControllerProps> = ({
   useEffect(() => {
     (async () => {
       await viewModel.getClient(id ?? '');
-      await viewModel.getBankAccounts(id ?? '');
+      // await viewModel.getBankAccounts(id ?? '');
     })();
   }, [viewModel, id]);
 
