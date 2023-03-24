@@ -37,7 +37,7 @@ const BankAccountPageController: React.FC<BankAccountPageControllerProps> = ({
   return (
     <BankAccountPageViewWithLoader
       isLoading={viewModel.isLoading}
-      bankAccount={viewModel.bankAccount!}
+      bankAccount={viewModel.bankAccount}
       operationsHistory={viewModel.operationsHistory!}
       backToTheClientPage={backToTheClientPage}
     />

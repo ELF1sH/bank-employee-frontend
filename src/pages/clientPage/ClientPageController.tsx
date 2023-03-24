@@ -20,10 +20,7 @@ const ClientPageController: React.FC<ClientPageControllerProps> = ({
   const navigate = useNavigate();
 
   useEffect(() => {
-    (async () => {
-      await viewModel.getClient(id ?? '');
-      // await viewModel.getBankAccounts(id ?? '');
-    })();
+    viewModel.init(id!);
   }, [viewModel, id]);
 
   const onClickBankAccountRow = (id: string) => {
@@ -39,6 +36,7 @@ const ClientPageController: React.FC<ClientPageControllerProps> = ({
       isLoading={viewModel.isLoading}
       client={viewModel.client!}
       bankAccounts={viewModel.bankAccounts}
+      creditAccounts={viewModel.creditAccounts}
       onClickBankAccountRow={onClickBankAccountRow}
       blockUser={() => viewModel.blockUser(id!)}
       bankToClientsList={bankToClientsList}

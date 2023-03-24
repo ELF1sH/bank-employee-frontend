@@ -2,6 +2,7 @@ import { action, makeObservable, observable } from 'mobx';
 
 import MobxHelper from '../../../utils/MobxHelper';
 import { ICreditTariff } from '../../../domain/entities/credit/creditTariff';
+import { GetCreditTariffsUseCase } from '../../../domain/useCases/credits/GetCreditTariffsUseCase';
 
 export class TariffsPageStore {
   @observable public isModalOpened: boolean = false;

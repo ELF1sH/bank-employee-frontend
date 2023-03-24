@@ -1,8 +1,6 @@
 import { IUser } from './user';
 
-export interface IEmployee extends IUser {
-
-}
+export interface IEmployee extends IUser { }
 
 export enum JobPosition {
   Cashier = 0,
@@ -10,8 +8,4 @@ export enum JobPosition {
   Director = 2,
 }
 
-export interface ICreateEmployeePayload {
-  firstName: string;
-  lastName: string;
-  jobPosition: number;
-}
+export type ICreateEmployeePayload = Omit<IEmployee, 'id' | 'isBlocked'>;

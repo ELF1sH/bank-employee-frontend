@@ -1,5 +1,6 @@
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 
+import { axiosInstance as axios } from '../axiosInstance';
 import { IAuthRepository } from './interfaces/IAuthRepository';
 import { ILoginPayload, ILoginResponse } from '../../entities/auth/auth';
 

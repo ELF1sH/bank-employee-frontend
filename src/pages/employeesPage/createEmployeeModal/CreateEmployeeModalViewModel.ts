@@ -6,6 +6,7 @@ import { FieldData } from '../../../utils/form/fieldData';
 import { fieldsData } from './fieldsData';
 import { CreateEmployeeUseCase } from '../../../domain/useCases/employees/CreateEmployeeUseCase';
 import { ICreateEmployeePayload } from '../../../domain/entities/users/employee';
+import { ICreateClientPayload } from '../../../domain/entities/users/client';
 
 export class CreateEmployeeModalViewModel {
   @observable private _fieldsData: FieldData[] = fieldsData;
@@ -25,13 +26,17 @@ export class CreateEmployeeModalViewModel {
   }
 
   @action public async createEmployee() {
-    const employeePayloadArray = this.fieldsData.map((field) => (
-      {
-        [field.name.toString()]: field.value,
-      }
-    ));
+    const payload = this.fieldsData.reduce((acc, cur: FieldData) => {
+      let key = '';
 
-    const employeePayload = { ...employeePayloadArray } as unknown as ICreateEmployeePayload;
+      if (Array.isArray(cur.name)) {
+        key = `${cur.name[0].toString()}`;
+      }
+
+      return { ...acc, [key]: cur.value };
+    }, {});
+
+    const employeePayload = payload as unknown as ICreateClientPayload;
 
     return this._createEmployeeUseCase.fetch(employeePayload);
   }

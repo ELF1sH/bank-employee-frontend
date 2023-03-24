@@ -25,13 +25,17 @@ export class CreateClientModalViewModel {
   }
 
   @action public async createClient() {
-    const clientPayloadArray = this.fieldsData.map((field) => (
-      {
-        [field.name.toString()]: field.value,
-      }
-    ));
+    const payload = this.fieldsData.reduce((acc, cur: FieldData) => {
+      let key = '';
 
-    const clientPayload = { ...clientPayloadArray } as unknown as ICreateClientPayload;
+      if (Array.isArray(cur.name)) {
+        key = `${cur.name[0].toString()}`;
+      }
+
+      return { ...acc, [key]: cur.value };
+    }, {});
+
+    const clientPayload = payload as unknown as ICreateClientPayload;
 
     return this._createClientUseCase.fetch(clientPayload);
   }

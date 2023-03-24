@@ -1,5 +1,6 @@
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 
+import { axiosInstance as axios } from '../axiosInstance';
 import { ICreateEmployeeResponse, IEmployeesRepository, IGetEmployeesResponse } from './interfaces/IEmployeesRepository';
 import { IPaginationRequest } from '../../entities/common/pagination';
 import { IEmployee, ICreateEmployeePayload } from '../../entities/users/employee';
@@ -9,7 +10,7 @@ class EmployeesRepository implements IEmployeesRepository {
   getEmployees(pagination: IPaginationRequest) {
     return axios
       .get('/employees/all')
-      .then((response: AxiosResponse<IGetEmployeesResponse>) => response.data);
+      .then((response: AxiosResponse<IEmployee[]>) => response.data);
   }
 
   getEmployee(payload: { id: string }) {
@@ -26,7 +27,7 @@ class EmployeesRepository implements IEmployeesRepository {
 
   async blockEmployee(payload: IBlockUserPayload) {
     await axios
-      .post(`/employee/${payload.id}/block`);
+      .post(`/employees/${payload.id}/block`);
   }
 }
 

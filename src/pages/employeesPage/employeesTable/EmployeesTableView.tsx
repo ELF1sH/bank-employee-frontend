@@ -3,10 +3,7 @@ import {
   Table, TablePaginationConfig, Tag,
 } from 'antd';
 
-import { IClient } from '../../../domain/entities/users/client';
 import { IEmployee } from '../../../domain/entities/users/employee';
-import { getJobPosition } from '../../../utils/enumMappers';
-import { getJobPositionColor } from './helper';
 
 const { Column, ColumnGroup } = Table;
 
@@ -43,7 +40,7 @@ const EmployeesTableView: React.FC<ClientsTableViewProps> = ({
       key="tags"
       render={(_, { isBlocked }: IEmployee) => (
         <>
-          {isBlocked && <Tag color="red">Blocked</Tag>}
+          {isBlocked ? <Tag color="red">Blocked</Tag> : null}
         </>
       )}
     />

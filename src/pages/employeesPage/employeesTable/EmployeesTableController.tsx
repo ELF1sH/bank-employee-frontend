@@ -29,7 +29,7 @@ const EmployeesTableController: React.FC<ClientsTableControllerProps> = ({ viewM
   };
 
   const onClickRow = (id: string) => {
-    navigate(id);
+    navigate(`/employees/${id}`);
   };
 
   return (

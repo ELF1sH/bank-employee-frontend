@@ -31,7 +31,7 @@ const EmployeePageView: React.FC<EmployeePageViewProps> = ({
     </PageHeader>
 
     {
-      employee.isBlocked && <Tag style={{ marginBottom: '20px' }} color="red">BLOCKED</Tag>
+      employee.isBlocked ? <Tag style={{ marginBottom: '20px' }} color="red">BLOCKED</Tag> : null
     }
 
     <Paragraph>

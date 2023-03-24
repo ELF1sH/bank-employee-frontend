@@ -8,6 +8,8 @@ import { GetClientUseCase } from '../../domain/useCases/clients/GetClientUseCase
 import { GetBankAccountsUseCase } from '../../domain/useCases/bankAccounts/GetBankAccountsUseCase';
 import { bankAccountRepository } from '../../domain/repositories/api/BankAccountRepository';
 import { BlockClientUseCase } from '../../domain/useCases/clients/BlockClientUseCase';
+import { GetCreditAccountsUseCase } from '../../domain/useCases/credits/getCreditAccountsUseCase';
+import { creditRepository } from '../../domain/repositories/api/CreditRepository';
 
 const ClientPageProvider: React.FC = () => {
   const { onError, onSuccess } = useNotifications();
@@ -25,10 +27,16 @@ const ClientPageProvider: React.FC = () => {
     onSuccess,
   );
 
+  const getCreditAccountsUseCase = new GetCreditAccountsUseCase(
+    creditRepository.getCreditAccounts,
+    onError,
+  );
+
   const viewModel = new ClientPageViewModel(
     getClientUseCase,
     getBankAccountsUseCase,
     blockClientUseCase,
+    getCreditAccountsUseCase,
   );
 
   return (

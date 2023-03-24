@@ -9,7 +9,4 @@ export const fieldsData: FieldData[] = [
     name: 'lastName',
     value: '',
   },
-  {
-    name: 'jobPosition',
-  },
 ];

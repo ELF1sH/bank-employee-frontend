@@ -5,8 +5,4 @@ export interface ICreditTariff {
   balance: number;
 }
 
-export interface ICreateCreditTariffPayload {
-  name: string;
-  percent: number;
-  balance: number;
-}
+export type ICreateCreditTariffPayload = Omit<ICreditTariff, 'id'>;

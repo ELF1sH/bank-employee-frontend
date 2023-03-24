@@ -7,6 +7,8 @@ import { GetClientUseCase } from '../../domain/useCases/clients/GetClientUseCase
 import { GetBankAccountsUseCase } from '../../domain/useCases/bankAccounts/GetBankAccountsUseCase';
 import { IBankAccount } from '../../domain/entities/bankAccounts/bankAccount';
 import { BlockClientUseCase } from '../../domain/useCases/clients/BlockClientUseCase';
+import { GetCreditAccountsUseCase } from '../../domain/useCases/credits/getCreditAccountsUseCase';
+import { ICreditAccount } from '../../domain/entities/credit/creditAccount';
 
 export class ClientPageViewModel {
   @observable private _isLoading: boolean = true;
@@ -15,12 +17,27 @@ export class ClientPageViewModel {
 
   @observable private _bankAccounts: IBankAccount[] = [];
 
+  @observable private _creditAccounts: ICreditAccount[] = [];
+
   public constructor(
     private _getClientUseCase: GetClientUseCase,
     private _getBankAccountsUseCase: GetBankAccountsUseCase,
     private _blockUserUseCase: BlockClientUseCase,
+    private _getCreditAccountsUseCase: GetCreditAccountsUseCase,
   ) {
     makeObservable(this);
+  }
+
+  @action public init(id: string) {
+    this._setIsLoading(true);
+
+    Promise.all([
+      this.getClient(id),
+      this.getBankAccounts(id),
+      this.getCreditAccounts(id),
+    ]).then(() => {
+      this._setIsLoading(false);
+    });
   }
 
   @computed public get isLoading() {
@@ -35,39 +52,44 @@ export class ClientPageViewModel {
     return toJS(this._bankAccounts);
   }
 
+  @computed public get creditAccounts() {
+    return toJS(this._creditAccounts);
+  }
+
   @action private _setIsLoading(val: boolean) {
     this._isLoading = val;
   }
 
   @action public getClient(id: string) {
-    this._setIsLoading(true);
-
-    this._getClientUseCase.fetch({ id })
+    return this._getClientUseCase.fetch({ id })
       .then((client) => {
         if (client) {
           runInAction(() => {
             this._client = client;
           });
         }
-      })
-      .finally(() => {
-        this._setIsLoading(false);
       });
   }
 
   @action public getBankAccounts(id: string) {
-    this._setIsLoading(true);
-
-    this._getBankAccountsUseCase.fetch({ id })
+    return this._getBankAccountsUseCase.fetch({ id })
       .then((bankAccounts) => {
         if (bankAccounts) {
           runInAction(() => {
             this._bankAccounts = bankAccounts;
           });
         }
-      })
-      .finally(() => {
-        this._setIsLoading(false);
+      });
+  }
+
+  @action public getCreditAccounts(id: string) {
+    return this._getCreditAccountsUseCase.fetch({ id })
+      .then((creditAccounts) => {
+        if (creditAccounts) {
+          runInAction(() => {
+            this._creditAccounts = creditAccounts;
+          });
+        }
       });
   }
 

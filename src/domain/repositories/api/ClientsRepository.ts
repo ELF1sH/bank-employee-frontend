@@ -1,5 +1,6 @@
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 
+import { axiosInstance as axios } from '../axiosInstance';
 import {
   IBlockUserPayload,
   IClientsRepository,
@@ -12,13 +13,13 @@ import { IClient, ICreateClientPayload } from '../../entities/users/client';
 class ClientsRepository implements IClientsRepository {
   getClients(pagination: IPaginationRequest) {
     return axios
-      .get('http://127.0.0.1:7000/api/clients/all')
+      .get('/clients/all')
       .then((response: AxiosResponse<IGetClientsResponse>) => response.data);
   }
 
   getClient(payload: { id: string }) {
     return axios
-      .get(`http://127.0.0.1:7000/api/clients/${payload.id}`)
+      .get(`/clients/${payload.id}`)
       .then((response: AxiosResponse<IClient>) => response.data);
   }
 
@@ -30,7 +31,7 @@ class ClientsRepository implements IClientsRepository {
 
   async blockClient(payload: IBlockUserPayload) {
     await axios
-      .post(`/client/${payload.id}/block`);
+      .post(`/clients/${payload.id}/block`);
   }
 }
 

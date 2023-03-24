@@ -29,7 +29,6 @@ const TariffsGridView: React.FC<TariffsGridViewProps> = ({
               <Text strong>Sum:</Text>
               &nbsp;
               {tariff.balance}
-              %
             </Paragraph>
           </Card>
         ))

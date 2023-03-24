@@ -33,7 +33,7 @@ const CreateClientModalController: React.FC<CreateClientModalControllerProps> = 
         setIsModalOpened(false);
 
         if (data && data.id) {
-          navigate(`clients/${data.id}`);
+          navigate(`/clients/${data.id}`);
         }
       })
       .catch(((e) => {}));

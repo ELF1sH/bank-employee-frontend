@@ -1,5 +1,6 @@
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 
+import { axiosInstance as axios } from '../axiosInstance';
 import { IBankAccountRepository } from './interfaces/IBankAccountRepository';
 import { IBankAccount } from '../../entities/bankAccounts/bankAccount';
 import { IOperation } from '../../entities/bankAccounts/operation';
@@ -7,7 +8,7 @@ import { IOperation } from '../../entities/bankAccounts/operation';
 class BankAccountRepository implements IBankAccountRepository {
   public getBankAccounts(payload: { id: string }) {
     return axios
-      .get(`/bank-accounts?id=${payload.id}`)
+      .get(`/bank-accounts?ownerId=${payload.id}`)
       .then((response: AxiosResponse<IBankAccount[]>) => response.data);
   }
 
