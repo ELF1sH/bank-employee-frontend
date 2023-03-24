@@ -7,8 +7,8 @@ import { GetClientUseCase } from '../../domain/useCases/clients/GetClientUseCase
 import { GetBankAccountsUseCase } from '../../domain/useCases/bankAccounts/GetBankAccountsUseCase';
 import { IBankAccount } from '../../domain/entities/bankAccounts/bankAccount';
 import { BlockClientUseCase } from '../../domain/useCases/clients/BlockClientUseCase';
-import { GetCreditAccountsUseCase } from '../../domain/useCases/credits/getCreditAccountsUseCase';
 import { ICreditAccount } from '../../domain/entities/credit/creditAccount';
+import { GetCreditAccountsUseCase } from '../../domain/useCases/credits/GetCreditAccountsUseCase';
 
 export class ClientPageViewModel {
   @observable private _isLoading: boolean = true;

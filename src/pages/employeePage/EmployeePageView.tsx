@@ -6,7 +6,6 @@ import PageHeader from '../../components/ui/molecules/pageHeader/PageHeader';
 import Button from '../../components/ui/atoms/button/Button';
 import BackIcon from '../../components/ui/atoms/icons/BackIcon';
 import { IEmployee } from '../../domain/entities/users/employee';
-import { getJobPosition } from '../../utils/enumMappers';
 
 const { Text } = Typography;
 
