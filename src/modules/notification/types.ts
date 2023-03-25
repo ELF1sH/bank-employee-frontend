@@ -4,6 +4,7 @@ export enum ErrorNotificationType {
   INCORRECT_LOGIN_OR_PASSWORD = 'incorrectLoginOrPassword',
   FAILED_TO_FETCH_DATA = 'failedToFetchData',
   FAILED_TO_SEND_DATA = 'failedToSendData',
+  FAILED_TO_AUTHENTICATE = 'failedToAuthenticate'
 }
 
 export type ShowSuccessNotificationFunction = (successMessageType: SuccessNotificationType) => void;

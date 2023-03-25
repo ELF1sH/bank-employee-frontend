@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios';
+
 import {
   ErrorNotificationType,
   ShowErrorFunction,
@@ -24,8 +26,12 @@ export class APIUseCase<RequestPayloadType, ResponseType> {
 
         return data;
       })
-      .catch((e: Error) => {
-        this._onError(this._errorMessage);
+      .catch((e: AxiosError) => {
+        if (e.response?.status === 401) {
+          this._onError(ErrorNotificationType.FAILED_TO_AUTHENTICATE);
+        } else {
+          this._onError(this._errorMessage);
+        }
 
         console.log(e);
       });

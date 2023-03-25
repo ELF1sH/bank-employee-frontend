@@ -41,6 +41,8 @@ const getErrorText = (errorType: ErrorNotificationType) => {
       return 'Failed to fetch data';
     case ErrorNotificationType.FAILED_TO_SEND_DATA:
       return 'Failed to send data';
+    case ErrorNotificationType.FAILED_TO_AUTHENTICATE:
+      return '401: Authentication error';
     default:
       return 'Unknown error';
   }

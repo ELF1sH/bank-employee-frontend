@@ -2,4 +2,7 @@ import { IGetClientsResponse } from '../../repositories/api/interfaces/IClientsR
 import { IPaginationRequest } from '../../entities/common/pagination';
 import { APIUseCase } from '../common/APIUseCase';
 
-export class GetClientsUseCase extends APIUseCase<IPaginationRequest, IGetClientsResponse> { }
+export class GetClientsUseCase extends APIUseCase<
+  IPaginationRequest,
+  IGetClientsResponse | undefined
+> { }
