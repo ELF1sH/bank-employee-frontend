@@ -17,9 +17,9 @@ export class APIUseCase<RequestPayloadType, ResponseType> {
     private readonly _successMessage?: SuccessNotificationType,
   ) { }
 
-  public fetch(payload: RequestPayloadType): Promise<ResponseType | void> {
+  public fetch(payload: RequestPayloadType): Promise<ResponseType | undefined | void> {
     return this._requestCallback(payload)
-      .then((data: ResponseType) => {
+      .then((data: ResponseType | undefined = undefined) => {
         if (this._successMessage && this._onSuccess) {
           this._onSuccess(this._successMessage);
         }
@@ -29,6 +29,8 @@ export class APIUseCase<RequestPayloadType, ResponseType> {
       .catch((e: AxiosError) => {
         if (e.response?.status === 401) {
           this._onError(ErrorNotificationType.FAILED_TO_AUTHENTICATE);
+        } else if (e.response?.status === 403) {
+          this._onError(ErrorNotificationType.FAILED_TO_AUTHORIZE);
         } else {
           this._onError(this._errorMessage);
         }

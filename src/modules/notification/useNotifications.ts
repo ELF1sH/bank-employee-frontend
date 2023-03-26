@@ -43,6 +43,8 @@ const getErrorText = (errorType: ErrorNotificationType) => {
       return 'Failed to send data';
     case ErrorNotificationType.FAILED_TO_AUTHENTICATE:
       return '401: Authentication error';
+    case ErrorNotificationType.FAILED_TO_AUTHORIZE:
+      return '403: Authorization error';
     default:
       return 'Unknown error';
   }

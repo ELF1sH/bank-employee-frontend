@@ -14,7 +14,7 @@ class ClientsRepository implements IClientsRepository {
   getClients(pagination: IPaginationRequest) {
     return axios
       .get('/clients/all')
-      .then((response: AxiosResponse<IGetClientsResponse>) => response.data);
+      .then((response: AxiosResponse<IGetClientsResponse>) => response?.data);
   }
 
   getClient(payload: { id: string }) {

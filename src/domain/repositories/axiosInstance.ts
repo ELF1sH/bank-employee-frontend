@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import axios, { Axios, AxiosError, AxiosResponse } from 'axios';
 
 import { history } from '../../utils/history';
 import { TokenRepository } from './other/TokenRepository';
@@ -13,16 +13,43 @@ export const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.response.use(
-  (response: AxiosResponse) => response,
+  (response: AxiosResponse) => {
+    console.log(response.status);
+
+    return response;
+  },
   (error: AxiosError) => {
     const status = error.response?.status;
+    const data = error.response?.data as { message: string };
 
-    // eslint-disable-next-line max-len
-    // TODO: if we get 401 but the problem is expired access token, we have to get a new one using refresh token
-    // eslint-disable-next-line max-len
-    // TODO if we get 401 but the problem is expired refresh token, we have to history.navigate?.('/')
-    if (status === 401) {
-      history.navigate?.('/');
+    const originalRequest = error.config;
+
+    console.log(status);
+    console.log(data);
+
+    if (data.message === 'jwt expired') {
+      console.log('Updating access token with refresh token...');
+
+      axios.post('http://localhost:7000/api/update-access-token', {
+        refreshToken: tokenRepository.getRefreshToken(),
+      })
+        .then((response) => {
+          console.log('New access token', response.data);
+
+          const { accessToken } = response.data;
+          tokenRepository.setAccessToken(accessToken);
+
+          axiosInstance.interceptors.request.use((config) => {
+            // eslint-disable-next-line no-param-reassign
+            config.headers.Authorization = accessToken;
+            return config;
+          });
+
+          return axiosInstance(originalRequest!);
+        })
+        .catch((e) => {
+          history.navigate?.('/');
+        });
     }
   },
 );
