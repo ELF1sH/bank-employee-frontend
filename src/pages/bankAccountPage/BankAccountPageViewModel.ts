@@ -12,8 +12,6 @@ export class BankAccountPageViewModel {
 
   @observable private _bankAccount: IBankAccount | undefined = undefined;
 
-  @observable private _operationsHistory: IOperation[] = [];
-
   public constructor(
     private _getBankAccountUseCase: GetBankAccountUseCase,
     private _getOperationsHistoryUseCase: GetOperationsHistoryUseCase,
@@ -29,10 +27,6 @@ export class BankAccountPageViewModel {
     return toJS(this._bankAccount);
   }
 
-  @computed public get operationsHistory() {
-    return toJS(this._operationsHistory);
-  }
-
   @action private _setIsLoading(val: boolean) {
     this._isLoading = val;
   }
@@ -45,22 +39,6 @@ export class BankAccountPageViewModel {
         if (bankAccount) {
           runInAction(() => {
             this._bankAccount = bankAccount;
-          });
-        }
-      })
-      .finally(() => {
-        this._setIsLoading(false);
-      });
-  }
-
-  @action public getOperationsHistory(id: string) {
-    this._setIsLoading(true);
-
-    this._getOperationsHistoryUseCase.fetch({ id })
-      .then((operationsHistory) => {
-        if (operationsHistory) {
-          runInAction(() => {
-            this._operationsHistory = operationsHistory;
           });
         }
       })
